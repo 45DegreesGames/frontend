@@ -9,7 +9,7 @@ function App() {
   const [error, setError] = useState(null);
 
   // URL del backend (actualizar con la URL de tu Replit)
-  const BACKEND_URL = "https://backend-z12n.onrender.com";
+  const BACKEND_URL = "https://api.render.com/deploy/srv-cuv53elds78s73fnq7kg?key=4BpoAhTz3Kg";
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
