@@ -9,7 +9,7 @@ function App() {
   const [error, setError] = useState(null);
 
   // URL del backend (actualizar con la URL de tu Replit)
-  const BACKEND_URL = "https://back2-0-jwos.onrender.com";
+  const API_URL = "https://back2-0-jwos.onrender.com";
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
@@ -25,12 +25,15 @@ function App() {
     setError(null);
     
     try {
-      const response = await fetch(`${BACKEND_URL}/convertir`, {
+      const response = await fetch(`${API_URL}/api/conversion/text-to-latex`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ texto: inputText }),
+        body: JSON.stringify({ 
+          text: inputText,
+          mathMode: false 
+        }),
       });
 
       if (!response.ok) {
@@ -57,7 +60,7 @@ function App() {
     setError(null);
     
     try {
-      const response = await fetch(`${BACKEND_URL}/generar-pdf`, {
+      const response = await fetch(`${API_URL}/generar-pdf`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +84,7 @@ function App() {
 
   const downloadPDF = () => {
     if (!pdfId) return;
-    window.open(`${BACKEND_URL}/descargar/${pdfId}`, '_blank');
+    window.open(`${API_URL}/descargar/${pdfId}`, '_blank');
   };
 
   return (
