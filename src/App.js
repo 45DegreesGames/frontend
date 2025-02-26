@@ -37,7 +37,8 @@ function App() {
       });
 
       if (!response.ok) {
-        throw new Error('Error al convertir el texto');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al convertir el texto');
       }
 
       const data = await response.json();
@@ -60,7 +61,7 @@ function App() {
     setError(null);
     
     try {
-      const response = await fetch(`${API_URL}/generar-pdf`, {
+      const response = await fetch(`${API_URL}/api/pdf/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +70,8 @@ function App() {
       });
 
       if (!response.ok) {
-        throw new Error('Error al generar el PDF');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al generar el PDF');
       }
 
       const data = await response.json();
@@ -84,7 +86,7 @@ function App() {
 
   const downloadPDF = () => {
     if (!pdfId) return;
-    window.open(`${API_URL}/descargar/${pdfId}`, '_blank');
+    window.open(`${API_URL}/api/pdf/download/${pdfId}`, '_blank');
   };
 
   return (
