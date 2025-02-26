@@ -9,7 +9,7 @@ function App() {
   const [error, setError] = useState(null);
 
   // URL del backend (actualizar con la URL de tu Replit)
-  const BACKEND_URL = "https://backend-tolc.onrender.com";
+  const BACKEND_URL = "https://back2-0-jwos.onrender.com";
 
   const handleInputChange = (e) => {
     setInputText(e.target.value);
